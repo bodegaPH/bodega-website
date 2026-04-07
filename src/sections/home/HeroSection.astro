@@ -1,0 +1,51 @@
+---
+import HeroAmbientBackground from '../../components/ui/islands/HeroAmbientBackground';
+import RotatingPhrase from '../../components/ui/islands/RotatingPhrase';
+import PrimaryButton from '../../components/ui/astro/PrimaryButton.astro';
+import SecondaryButton from '../../components/ui/astro/SecondaryButton.astro';
+---
+
+<section class="relative w-full min-h-screen flex items-end bg-zinc-950 overflow-hidden pt-20 pb-20">
+  
+  <!-- Full-bleed Ambient Grid -->
+  <HeroAmbientBackground client:load />
+
+  <!-- Flush-left editorial content -->
+  <div class="relative z-10 w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 pb-4">
+
+    <!-- Mega flush-left headline -->
+    <h1
+      class="font-light font-sans tracking-normal text-white leading-[1.1]"
+      style="font-size: clamp(2rem, 5.5vw, 5.5rem)"
+    >
+      <span class="block">Your single</span>
+      <span class="block">source of truth for</span>
+      <span class="block">
+        <RotatingPhrase client:load />
+      </span>
+    </h1>
+
+    <!-- Sub-copy -->
+    <p class="mt-8 max-w-md text-zinc-400 text-base leading-relaxed font-sans">
+      Real-time inventory ledger with cryptographic integrity. Every movement recorded, nothing ever revised.
+    </p>
+
+    <!-- CLI-style CTAs -->
+    <div class="mt-10 flex flex-row items-center gap-4 font-mono text-sm tracking-wide">
+      <PrimaryButton href="/auth/signup">
+        get_started
+      </PrimaryButton>
+      <SecondaryButton href="#features">
+        read_docs()
+      </SecondaryButton>
+    </div>
+
+    <!-- Trust badge bar -->
+    <div class="mt-14 flex items-center gap-8 text-[10px] text-zinc-600 font-mono uppercase tracking-widest border-t border-white/5 pt-8">
+      <span class="flex items-center gap-2"><span class="w-1 h-1 bg-zinc-700"></span>SOC2 Type II</span>
+      <span class="flex items-center gap-2"><span class="w-1 h-1 bg-zinc-700"></span>Immutable Ledger</span>
+      <span class="flex items-center gap-2"><span class="w-1 h-1 bg-zinc-700"></span>E2E Encryption</span>
+    </div>
+
+  </div>
+</section>

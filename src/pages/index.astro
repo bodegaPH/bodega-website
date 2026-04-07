@@ -1,12 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/astro/Navigation.astro';
-import Footer from '../components/astro/Footer.astro';
+import Navigation from '../components/site/Navigation.astro';
+import Footer from '../components/site/Footer.astro';
 
-import Hero from '../components/react/Hero';
-import Features from '../components/react/Features';
-import Steps from '../components/react/Steps';
-import CTA from '../components/react/CTA';
+import HeroSection from '../sections/home/HeroSection.astro';
+import FeaturesSection from '../sections/home/FeaturesSection.astro';
+import StepsSection from '../sections/home/StepsSection.astro';
+import CTASection from '../sections/shared/CTASection.astro';
 ---
 
 <Layout title="Bodega - Inventory Management">
@@ -14,10 +14,10 @@ import CTA from '../components/react/CTA';
     <Navigation />
     <main class="relative z-10 flex-1">
       <div class="flex flex-col items-center w-full overflow-hidden">
-        <Hero client:load />
-        <Features client:load />
-        <Steps client:load />
-        <CTA client:load />
+        <HeroSection />
+        <FeaturesSection />
+        <StepsSection />
+        <CTASection />
       </div>
     </main>
     <Footer />
