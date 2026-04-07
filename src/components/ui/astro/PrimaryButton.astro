@@ -1,0 +1,16 @@
+---
+interface Props {
+  href: string;
+  class?: string;
+}
+
+const { href, class: className = "" } = Astro.props;
+---
+
+<a
+  href={href}
+  class={`px-8 py-4 bg-indigo-500 text-zinc-950 font-bold hover:bg-white uppercase transition-all shadow-[0_0_30px_-5px_rgba(99,102,241,0.5)] flex items-center gap-3 font-mono text-sm ${className}`}
+>
+  <span class="animate-pulse w-2 h-4 bg-zinc-950 inline-block"></span>
+  <slot />
+</a>

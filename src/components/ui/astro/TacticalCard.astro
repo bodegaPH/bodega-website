@@ -1,0 +1,17 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div class={`relative border border-white/8 bg-zinc-900/20 ${className}`}>
+  <!-- Tactical Corner Brackets -->
+  <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20"></span>
+  <span class="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/20"></span>
+  <span class="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/20"></span>
+  <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20"></span>
+  
+  <slot />
+</div>
