@@ -158,21 +158,25 @@ import OpBadge from '../../components/ui/astro/OpBadge.astro';
 
       <!-- Graphic Area: Access Matrix -->
       <div class="relative border-b border-zinc-900 bg-zinc-900/20 flex flex-col justify-center h-[180px]">
-        <div class="w-full h-full max-h-[140px] flex flex-col justify-center items-center">
-          <div class="grid grid-cols-4 gap-1 w-full max-w-[200px]">
-            <div class="text-[8px] text-zinc-600 font-mono mb-2">ROLE</div>
-            <div class="text-[8px] text-zinc-600 font-mono mb-2 text-center">RD</div>
-            <div class="text-[8px] text-zinc-600 font-mono mb-2 text-center">WR</div>
-            <div class="text-[8px] text-zinc-600 font-mono mb-2 text-center">EX</div>
+        <div class="w-full h-full max-h-[140px] flex flex-col justify-center items-center overflow-hidden">
+          <div class="grid grid-cols-4 gap-1 w-full max-w-[200px] relative">
+            
+            <!-- Scanning Line (CSS Animation) -->
+            <div class="absolute top-[-10px] bottom-[-10px] w-[20px] bg-indigo-500/10 border-x border-indigo-500/30 animate-matrix-scan z-0 pointer-events-none" style="left: -10px;"></div>
+
+            <div class="text-[8px] text-zinc-600 font-mono mb-2 z-10">ROLE</div>
+            <div class="text-[8px] text-zinc-600 font-mono mb-2 text-center z-10">RD</div>
+            <div class="text-[8px] text-zinc-600 font-mono mb-2 text-center z-10">WR</div>
+            <div class="text-[8px] text-zinc-600 font-mono mb-2 text-center z-10">EX</div>
             
             {['SYS_ADM', 'WH_MGR', 'AUDIT'].map((role, rIdx) => (
               <>
-                <div class={`text-[10px] font-mono leading-none flex items-center ${role === 'SYS_ADM' ? 'text-indigo-500' : 'text-zinc-500'}`}>{role}</div>
+                <div class={`text-[10px] font-mono leading-none flex items-center z-10 ${role === 'SYS_ADM' ? 'text-indigo-500' : 'text-zinc-500'}`}>{role}</div>
                 {[1,2,3].map((col) => {
                   const hasAccess = rIdx === 0 || (rIdx === 1 && col < 3) || (rIdx === 2 && col === 1);
                   return (
-                    <div class="flex justify-center items-center h-5">
-                      <div class={`w-2 h-2 ${hasAccess ? (role === 'SYS_ADM' ? 'bg-indigo-500' : 'bg-white') : 'bg-transparent border border-white/10'}`}></div>
+                    <div class="flex justify-center items-center h-5 z-10">
+                      <div class={`w-2 h-2 ${hasAccess ? (role === 'SYS_ADM' ? 'bg-indigo-500' : 'bg-white') : 'bg-transparent border border-white/10'} ${hasAccess ? 'animate-pulse' : ''}`} style={hasAccess ? `animation-duration: ${1 + (col * 0.5)}s;` : ''}></div>
                     </div>
                   );
                 })}
@@ -214,18 +218,20 @@ import OpBadge from '../../components/ui/astro/OpBadge.astro';
             LIVE_FEED
           </div>
           <!-- Grid line -->
-          <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-white/5"></div>
+          <div class="absolute top-1/2 left-0 w-full border-t border-dashed border-zinc-800"></div>
 
-          {[40, 70, 45, 90, 65, 30, 80, 50, 60, 100, 30, 40].map((h) => (
+          {[40, 70, 45, 90, 65, 30, 80, 50, 60, 100, 30, 40].map((h, i) => {
+            const hVar = Math.max(10, h - 30 + (Math.random() * 40));
+            return (
             <div class="w-[6%] relative flex flex-col justify-end" style="height: 100%;">
               <div 
-                class={`w-full border-t border-l border-r border-b-0 ${h === 100 ? 'bg-indigo-500 border-indigo-500' : 'bg-zinc-800 border-zinc-600'}`}
-                style={`height: ${h}%;`}
+                class={`w-full border-t border-l border-r border-b-0 ${h === 100 ? 'bg-indigo-500 border-indigo-500' : 'bg-zinc-800 border-zinc-600'} animate-telemetry`}
+                style={`--h: ${h}%; --h-var: ${hVar}%; animation-delay: ${i * 0.15}s; height: var(--h);`}
               ></div>
             </div>
-          ))}
+          )})}
           <!-- Floor line -->
-          <div class="absolute bottom-0 left-0 w-full border-t border-white/20"></div>
+          <div class="absolute bottom-0 left-0 w-full border-t border-zinc-800"></div>
         </div>
       </div>
 
