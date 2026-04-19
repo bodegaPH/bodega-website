@@ -27,4 +27,25 @@
     animation: infinite-scroll-y 15s linear infinite;
     will-change: transform;
   }
+
+  @keyframes telemetry {
+    0%, 100% { height: var(--h); }
+    50% { height: var(--h-var); }
+  }
+
+  .animate-telemetry {
+    animation: telemetry 0.8s ease-in-out infinite alternate;
+    will-change: height;
+  }
+
+  @keyframes matrix-scan {
+    0%, 100% { transform: translateX(0); opacity: 0; }
+    5%, 95% { opacity: 1; }
+    50% { transform: translateX(180px); }
+  }
+
+  .animate-matrix-scan {
+    animation: matrix-scan 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    will-change: transform;
+  }
 }
