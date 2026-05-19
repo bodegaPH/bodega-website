@@ -1,0 +1,158 @@
+---
+import SectionEyebrow from '../../components/ui/astro/SectionEyebrow.astro';
+import PrimaryButton from '../../components/ui/astro/PrimaryButton.astro';
+import SecondaryButton from '../../components/ui/astro/SecondaryButton.astro';
+
+const logRows = [
+  { time: '05:47:03', op: 'OP:RECEIVE', item: 'SKU-A9821 × 48 units', type: 'recv' },
+  { time: '05:47:01', op: 'OP:ISSUE',   item: 'SKU-B3301 × 12 units', type: 'issue' },
+  { time: '05:46:58', op: 'OP:SYNC',    item: 'WH-BETA uplink verified', type: 'sync' },
+  { time: '05:46:55', op: 'OP:RECEIVE', item: 'SKU-C1102 × 200 units', type: 'recv' },
+  { time: '05:46:52', op: 'OP:ADJUST',  item: 'SKU-A9820 audit +3 units', type: 'adj' },
+  { time: '05:46:49', op: 'OP:ISSUE',   item: 'SKU-D7742 × 5 units', type: 'issue' },
+  { time: '05:46:46', op: 'OP:RECEIVE', item: 'SKU-E0011 × 100 units', type: 'recv' },
+  { time: '05:46:43', op: 'OP:SYNC',    item: 'WH-GAMMA uplink verified', type: 'sync' },
+];
+
+// Doubled for seamless infinite scroll
+const allRows = [...logRows, ...logRows];
+---
+
+<section class="relative w-full min-h-screen bg-zinc-950 overflow-hidden border-b border-white/5">
+
+  <!-- Static dot-grid background (full bleed) -->
+  <div class="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="product-hero-dot" width="28" height="28" patternUnits="userSpaceOnUse">
+          <rect x="0" y="0" width="1.5" height="1.5" fill="#27272a"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#product-hero-dot)" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <!-- Vertical indigo rule (left edge accent) -->
+  <div class="absolute left-0 top-0 h-full w-[2px] bg-gradient-to-b from-transparent via-indigo-500/50 to-transparent z-10 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="relative z-10 w-full max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 min-h-screen
+              grid lg:grid-cols-[1fr_480px] xl:grid-cols-[1fr_560px] gap-0 items-stretch">
+
+    <!-- ─── Left Column: Editorial Copy ─── -->
+    <div class="flex flex-col justify-center py-32 lg:pr-16 lg:border-r lg:border-white/5">
+
+      <div class="border-l-2 border-indigo-500 pl-6 mb-10">
+        <SectionEyebrow class="mb-4">Product Overview</SectionEyebrow>
+        <h1
+          class="font-light font-sans tracking-tight text-white leading-[1.05] uppercase"
+          style="font-size: clamp(2.8rem, 6.5vw, 6.5rem)"
+        >
+          <span class="block">Every</span>
+          <span class="block">Movement.</span>
+          <span class="block text-indigo-400">Recorded.</span>
+          <span class="block">Permanent.</span>
+        </h1>
+      </div>
+
+      <p class="text-zinc-400 text-base leading-relaxed font-sans max-w-lg mb-10">
+        Bodega replaces spreadsheets and guesswork with a real-time ledger built for physical warehouses.
+        Every scan — receiving, adjusting, or issuing stock — writes a permanent, tamper-proof entry
+        your entire team can verify instantly.
+      </p>
+
+      <!-- Spec tags -->
+      <div class="flex flex-wrap gap-2.5 mb-10">
+        {['&lt;12ms Sync', 'Offline-First', 'Role-Based Access', 'Unlimited History'].map(tag => (
+          <span class="text-[10px] font-mono text-zinc-400 border border-zinc-800 px-3 py-1.5 tracking-widest uppercase bg-zinc-900/50" set:html={tag}/>
+        ))}
+      </div>
+
+      <div class="flex flex-row items-center gap-4 font-mono text-sm tracking-wide">
+        <PrimaryButton href="/pricing">Start Free Trial</PrimaryButton>
+        <SecondaryButton href="/docs">View Docs</SecondaryButton>
+      </div>
+    </div>
+
+    <!-- ─── Right Column: Live Terminal Panel ─── -->
+    <div class="hidden lg:flex items-center justify-center py-32 pl-16">
+      <div class="w-full border border-white/10 bg-zinc-900/20 relative">
+
+        <!-- Indigo corner accents -->
+        <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-indigo-500 z-10" aria-hidden="true"></div>
+        <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-indigo-500 z-10" aria-hidden="true"></div>
+        <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-indigo-500 z-10" aria-hidden="true"></div>
+        <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-indigo-500 z-10" aria-hidden="true"></div>
+
+        <!-- Terminal header bar -->
+        <div class="border-b border-white/10 bg-zinc-950/80 px-5 py-3 flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="w-1.5 h-1.5 bg-indigo-500 animate-pulse" aria-hidden="true"></span>
+            <span class="text-[9px] font-mono text-indigo-400 tracking-widest uppercase">BODEGA_TERMINAL // LIVE</span>
+          </div>
+          <span class="text-[9px] font-mono text-zinc-600 tracking-widest">WH-ALPHA // ONLINE</span>
+        </div>
+
+        <!-- Mini stats row -->
+        <div class="grid grid-cols-3 border-b border-white/5">
+          <div class="p-4 border-r border-white/5 text-center">
+            <div class="text-xl font-mono font-light text-white tabular-nums">2,847</div>
+            <div class="text-[8px] font-mono text-zinc-600 tracking-widest mt-1 uppercase">Movements Today</div>
+          </div>
+          <div class="p-4 border-r border-white/5 text-center">
+            <div class="text-xl font-mono font-light text-indigo-400 tabular-nums">11ms</div>
+            <div class="text-[8px] font-mono text-zinc-600 tracking-widest mt-1 uppercase">Avg Sync</div>
+          </div>
+          <div class="p-4 text-center">
+            <div class="text-xl font-mono font-light text-white tabular-nums">100%</div>
+            <div class="text-[8px] font-mono text-zinc-600 tracking-widest mt-1 uppercase">Uptime</div>
+          </div>
+        </div>
+
+        <!-- Log feed column headers -->
+        <div class="px-5 py-2.5 border-b border-white/5 bg-black/30">
+          <div class="grid grid-cols-[90px_1fr_40px] gap-2">
+            <span class="text-[8px] font-mono text-zinc-700 uppercase tracking-widest">Time</span>
+            <span class="text-[8px] font-mono text-zinc-700 uppercase tracking-widest">Operation</span>
+            <span class="text-[8px] font-mono text-zinc-700 uppercase tracking-widest text-right">OK</span>
+          </div>
+        </div>
+
+        <!-- Scrolling log rows -->
+        <div
+          class="overflow-hidden h-[260px] relative"
+          style="mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+                 -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);"
+          aria-label="Live inventory movement feed"
+        >
+          <div class="flex flex-col animate-infinite-scroll-y">
+            {allRows.map((row) => (
+              <div class="grid grid-cols-[90px_1fr_40px] gap-2 px-5 py-2.5 border-b border-white/[0.04] items-center">
+                <span class="text-[9px] font-mono text-zinc-600 tabular-nums">{row.time}</span>
+                <div class="min-w-0">
+                  <span class={`text-[9px] font-mono mr-1.5 ${
+                    row.type === 'recv'  ? 'text-indigo-400' :
+                    row.type === 'adj'   ? 'text-zinc-300'   :
+                    row.type === 'sync'  ? 'text-zinc-500'   :
+                                          'text-zinc-400'
+                  }`}>{row.op}</span>
+                  <span class="text-[9px] font-mono text-zinc-600 truncate">{row.item}</span>
+                </div>
+                <span class="text-[9px] font-mono text-indigo-400 text-right">✓</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Status footer -->
+        <div class="border-t border-white/5 px-5 py-3 bg-black/20 flex items-center justify-between">
+          <span class="text-[8px] font-mono text-zinc-700 tracking-widest">LEDGER_INTEGRITY: VERIFIED</span>
+          <div class="flex items-center gap-1.5">
+            <span class="w-1 h-1 bg-indigo-500 animate-pulse" aria-hidden="true"></span>
+            <span class="text-[8px] font-mono text-zinc-600 tracking-widest">STREAMING</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

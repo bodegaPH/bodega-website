@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/site/Navigation.astro';
+import Footer from '../components/site/Footer.astro';
+
+import PricingTiers from '../sections/pricing/PricingTiers.astro';
+import PricingMatrix from '../sections/pricing/PricingMatrix.astro';
+import CTASection from '../sections/shared/CTASection.astro';
+---
+
+<Layout title="Bodega - Sandbox Allocations">
+  <div class="min-h-screen bg-zinc-950 flex flex-col relative overflow-hidden">
+    <Navigation />
+    <main class="relative z-10 flex-1">
+      <div class="flex flex-col items-center w-full overflow-hidden">
+        <PricingTiers />
+        <PricingMatrix />
+        <CTASection />
+      </div>
+    </main>
+    <Footer />
+  </div>
+</Layout>

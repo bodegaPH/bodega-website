@@ -26,3 +26,6 @@ pnpm-debug.log*
 
 # astro
 .astro/
+
+# tools
+.agents/

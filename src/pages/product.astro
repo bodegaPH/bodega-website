@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/site/Navigation.astro';
+import Footer from '../components/site/Footer.astro';
+
+import ProductHero from '../sections/product/ProductHero.astro';
+import ProductStory from '../sections/product/ProductStory.astro';
+import ProductMetrics from '../sections/product/ProductMetrics.astro';
+import ProductCTA from '../sections/product/ProductCTA.astro';
+---
+
+<Layout title="Bodega - How It Works">
+  <div class="min-h-screen bg-zinc-950 flex flex-col relative">
+    <Navigation />
+    <main class="relative z-10 flex-1">
+      <div class="flex flex-col items-center w-full">
+        <ProductHero />
+        <ProductStory />
+        <ProductMetrics />
+        <ProductCTA />
+      </div>
+    </main>
+    <Footer />
+  </div>
+</Layout>
