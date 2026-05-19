@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/site/Navigation.astro';
+import Footer from '../components/site/Footer.astro';
+import SectionEyebrow from '../components/ui/astro/SectionEyebrow.astro';
+---
+
+<Layout title="Bodega - Privacy Protocol">
+  <div class="min-h-screen bg-zinc-950 flex flex-col relative overflow-hidden">
+    <Navigation />
+    
+    <main class="relative z-10 flex-1 max-w-[1600px] w-full mx-auto px-6 sm:px-10 lg:px-16 py-16 lg:py-24 border-b border-white/5">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Sticky Left Navigation -->
+        <aside class="lg:col-span-3 lg:sticky lg:top-24 space-y-4 font-mono text-xs text-zinc-500">
+          <div class="text-[9px] uppercase tracking-widest text-zinc-500 mb-4 border-b border-white/10 pb-2">// CLAUSE_INDEX</div>
+          <ul class="space-y-3">
+            <li><a href="#sec-1" class="hover:text-indigo-400 block transition-colors">1.0_DATA_COLLECTION</a></li>
+            <li><a href="#sec-2" class="hover:text-indigo-400 block transition-colors">2.0_LEDGER_STORAGE</a></li>
+            <li><a href="#sec-3" class="hover:text-indigo-400 block transition-colors">3.0_SECURITY_MATRIX</a></li>
+          </ul>
+        </aside>
+
+        <!-- Right Column Legal Copy -->
+        <div class="lg:col-span-9 space-y-16">
+          
+          <div class="border-l-2 border-indigo-500 pl-6">
+            <SectionEyebrow class="mb-2">Data Protection Specification</SectionEyebrow>
+            <h1 class="text-3xl font-light text-white uppercase tracking-tight">Privacy Protocol</h1>
+            <p class="mt-2 text-zinc-500 font-mono text-xs">// STATUS: ACTIVE_CONTRACT // EFFECTIVE: 2026-05-20</p>
+          </div>
+
+          <!-- Section 1 -->
+          <section id="sec-1" class="space-y-4 scroll-mt-24">
+            <h2 class="text-lg font-bold font-mono text-white uppercase">1.0 Data Collection Metrics</h2>
+            <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+              Bodega operates as a localized sandbox environment. During connection synchronizations, we record and log scale weights, barcode inputs, scanning frequencies, and access signatures strictly within localized node partitions.
+            </p>
+            <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+              We do not track external IP locations, operator browsing activities, or unrelated system metrics. All telemetry streams are strictly restricted to inventory operation vectors.
+            </p>
+          </section>
+
+          <!-- Section 2 -->
+          <section id="sec-2" class="space-y-4 border-t border-white/5 pt-12 scroll-mt-24">
+            <h2 class="text-lg font-bold font-mono text-white uppercase">2.0 Ledger Storage Immutability</h2>
+            <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+              Any payload injected into the append-only ledger is written permanently. Due to the cryptographic chain design, we cannot modify, overwrite, or delete transaction history logs under any circumstances, aligning with our strict non-revocation protocols.
+            </p>
+            <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+              Operators can delete localized sandboxes at any time, which entirely purges connection keys from memory, but preceding nodes registered on the global block flow remain permanent and verifiable.
+            </p>
+          </section>
+
+          <!-- Section 3 -->
+          <section id="sec-3" class="space-y-4 border-t border-white/5 pt-12 scroll-mt-24">
+            <h2 class="text-lg font-bold font-mono text-white uppercase">3.0 Access Security Boundaries</h2>
+            <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+              Decentralized access boundaries are audited on every payload signature. Authorized node keys are cryptographically isolated and never shared between WH instances or external databases. 
+            </p>
+            <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+              In the event of a security key leakage, the affected node access bridge can be instantly terminated from the administrator matrix panel, completely blockading further synchronizations.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

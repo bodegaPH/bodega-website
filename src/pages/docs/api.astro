@@ -1,0 +1,319 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/site/Navigation.astro';
+import Footer from '../../components/site/Footer.astro';
+import SectionEyebrow from '../../components/ui/astro/SectionEyebrow.astro';
+import OpBadge from '../../components/ui/astro/OpBadge.astro';
+---
+
+<Layout title="Bodega - API Reference">
+  <div class="min-h-screen bg-zinc-950 flex flex-col relative">
+    <Navigation />
+    
+    <main class="relative z-10 flex-1 max-w-[1600px] w-full mx-auto px-6 sm:px-10 lg:px-16 py-16 lg:py-24 border-b border-white/5">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Sticky Left Sidebar: API Shortcuts -->
+        <aside class="lg:col-span-3 lg:sticky lg:top-24 space-y-8 font-mono text-xs">
+          <div>
+            <div class="text-[9px] uppercase tracking-widest text-zinc-500 mb-4 border-b border-white/10 pb-2">
+              // ENDPOINTS_INDEX
+            </div>
+            <ul class="space-y-4">
+              <li>
+                <a
+                  href="#endpoint-auth"
+                  data-nav-link="endpoint-auth"
+                  class="nav-link group block py-1 pl-3 border-l border-transparent transition-all duration-200"
+                >
+                  <div class="text-zinc-500 text-[8px] group-hover:text-indigo-400">POST</div>
+                  <div class="text-zinc-400 group-hover:text-indigo-400 transition-colors font-bold">/v1/auth/token</div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#endpoint-movements"
+                  data-nav-link="endpoint-movements"
+                  class="nav-link group block py-1 pl-3 border-l border-transparent transition-all duration-200"
+                >
+                  <div class="text-zinc-500 text-[8px] group-hover:text-indigo-400">POST</div>
+                  <div class="text-zinc-400 group-hover:text-indigo-400 transition-colors font-bold">/v1/movements</div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#endpoint-nodes"
+                  data-nav-link="endpoint-nodes"
+                  class="nav-link group block py-1 pl-3 border-l border-transparent transition-all duration-200"
+                >
+                  <div class="text-zinc-500 text-[8px] group-hover:text-indigo-400">GET</div>
+                  <div class="text-zinc-400 group-hover:text-indigo-400 transition-colors font-bold">/v1/nodes</div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#endpoint-telemetry"
+                  data-nav-link="endpoint-telemetry"
+                  class="nav-link group block py-1 pl-3 border-l border-transparent transition-all duration-200"
+                >
+                  <div class="text-zinc-500 text-[8px] group-hover:text-indigo-400">GET</div>
+                  <div class="text-zinc-400 group-hover:text-indigo-400 transition-colors font-bold">/v1/telemetry</div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <a href="/docs" class="inline-flex items-center gap-2 hover:text-indigo-400 text-zinc-500 transition-colors uppercase font-bold tracking-widest text-[10px]">
+              &lt; Back to docs
+            </a>
+          </div>
+        </aside>
+
+        <!-- Right Column: API Content -->
+        <div class="lg:col-span-9 space-y-24">
+          
+          <!-- Page Header -->
+          <div class="border-l-2 border-indigo-500 pl-6">
+            <SectionEyebrow class="mb-2">Developer Uplink Manual</SectionEyebrow>
+            <h1 class="text-3xl sm:text-4xl font-light text-white uppercase tracking-tight">API Reference</h1>
+            <p class="mt-4 text-zinc-400 text-base font-sans max-w-2xl leading-relaxed">
+              Integrate isolated clients directly with the Bodega ledger. The API strictly processes and cryptographically validates state parameters.
+            </p>
+          </div>
+
+          <!-- Endpoint 1: Auth Token -->
+          <section id="endpoint-auth" class="space-y-6 scroll-mt-24">
+            <div class="flex flex-wrap items-center gap-3 border-b border-white/10 pb-4">
+              <span class="px-2 py-0.5 border border-indigo-500/30 text-[10px] font-mono text-indigo-400 bg-indigo-500/5">POST</span>
+              <h2 class="text-xl font-bold font-mono tracking-wider text-white">/v1/auth/token</h2>
+            </div>
+            
+            <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+              Generate a short-lived secure uplink token. Requires matching sandbox keys or node operator credentials to establish bridges.
+            </p>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+              <!-- Parameters Table -->
+              <div class="border border-white/5 overflow-x-auto">
+                <table class="w-full border-collapse font-mono text-[11px] text-left">
+                  <thead>
+                    <tr class="border-b border-white/10 bg-zinc-900/30">
+                      <th class="p-3 text-[8px] uppercase tracking-widest text-zinc-500">Payload param</th>
+                      <th class="p-3 text-[8px] uppercase tracking-widest text-zinc-500">Type</th>
+                      <th class="p-3 text-[8px] uppercase tracking-widest text-zinc-500">Required</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-white/5">
+                      <td class="p-3 text-white">client_id</td>
+                      <td class="p-3 text-zinc-500">string (uuid)</td>
+                      <td class="p-3 text-indigo-400 font-bold">YES</td>
+                    </tr>
+                    <tr class="border-b border-white/5">
+                      <td class="p-3 text-white">secret_key</td>
+                      <td class="p-3 text-zinc-500">string (sha256)</td>
+                      <td class="p-3 text-indigo-400 font-bold">YES</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Terminal Panel -->
+              <div class="bg-zinc-900/40 border border-white/5 p-5 relative">
+                <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20"></span>
+                <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20"></span>
+                <span class="text-[8px] font-mono text-zinc-500 tracking-widest block mb-3 uppercase">// CURL_REQUEST</span>
+                <pre class="font-mono text-[10px] text-indigo-400 overflow-x-auto"><code>curl -X POST https://api.bodega.dev/v1/auth/token \
+  -H "Content-Type: application/json" \
+  -d '&#123;"client_id": "wh_08f...", "secret_key": "sec_71a..."&#125;'</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <!-- Endpoint 2: Inject Movements -->
+          <section id="endpoint-movements" class="space-y-6 border-t border-white/5 pt-16 scroll-mt-24">
+            <div class="flex flex-wrap items-center gap-3 border-b border-white/10 pb-4">
+              <span class="px-2 py-0.5 border border-indigo-500/30 text-[10px] font-mono text-indigo-400 bg-indigo-500/5">POST</span>
+              <h2 class="text-xl font-bold font-mono tracking-wider text-white">/v1/movements</h2>
+            </div>
+            
+            <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+              Inject a physical stock mutation. Validates credentials, executes cryptographic bounds checks, and appends transaction blocks.
+            </p>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+              <!-- Parameters Table -->
+              <div class="border border-white/5 overflow-x-auto">
+                <table class="w-full border-collapse font-mono text-[11px] text-left">
+                  <thead>
+                    <tr class="border-b border-white/10 bg-zinc-900/30">
+                      <th class="p-3 text-[8px] uppercase tracking-widest text-zinc-500">Payload param</th>
+                      <th class="p-3 text-[8px] uppercase tracking-widest text-zinc-500">Type</th>
+                      <th class="p-3 text-[8px] uppercase tracking-widest text-zinc-500">Required</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-white/5">
+                      <td class="p-3 text-white">node_id</td>
+                      <td class="p-3 text-zinc-500">string</td>
+                      <td class="p-3 text-indigo-400 font-bold">YES</td>
+                    </tr>
+                    <tr class="border-b border-white/5">
+                      <td class="p-3 text-white">vector</td>
+                      <td class="p-3 text-zinc-500">RECEIVE | ADJUST | ISSUE</td>
+                      <td class="p-3 text-indigo-400 font-bold">YES</td>
+                    </tr>
+                    <tr class="border-b border-white/5">
+                      <td class="p-3 text-white">payload</td>
+                      <td class="p-3 text-zinc-500">object (item, qty)</td>
+                      <td class="p-3 text-indigo-400 font-bold">YES</td>
+                    </tr>
+                    <tr class="border-b border-white/5">
+                      <td class="p-3 text-white">signature</td>
+                      <td class="p-3 text-zinc-500">string (ecdsa)</td>
+                      <td class="p-3 text-indigo-400 font-bold">YES</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Terminal Panel -->
+              <div class="bg-zinc-900/40 border border-white/5 p-5 relative">
+                <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20"></span>
+                <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20"></span>
+                <span class="text-[8px] font-mono text-zinc-500 tracking-widest block mb-3 uppercase">// RESPONSE_BODY</span>
+                <pre class="font-mono text-[10px] text-indigo-400 overflow-x-auto"><code>&#123;
+  "status": "OK",
+  "block_id": 923,
+  "hash": "0e928f11a43a0d1bc7190",
+  "provenance_sig": "ecdsa_88f910a2",
+  "timestamp": "2026-05-20T05:23:44Z"
+&#125;</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <!-- Endpoint 3: Fetch Nodes Status -->
+          <section id="endpoint-nodes" class="space-y-6 border-t border-white/5 pt-16 scroll-mt-24">
+            <div class="flex flex-wrap items-center gap-3 border-b border-white/10 pb-4">
+              <span class="px-2 py-0.5 border border-white/20 text-[10px] font-mono text-zinc-400 bg-zinc-900/40">GET</span>
+              <h2 class="text-xl font-bold font-mono tracking-wider text-white">/v1/nodes</h2>
+            </div>
+            
+            <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+              Retrieve connection, synchronization, and latency stats from all active micro-sandbox nodes.
+            </p>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+              <!-- Parameters Table -->
+              <div class="border border-white/5 overflow-x-auto">
+                <table class="w-full border-collapse font-mono text-[11px] text-left">
+                  <thead>
+                    <tr class="border-b border-white/10 bg-zinc-900/30">
+                      <th class="p-3 text-[8px] uppercase tracking-widest text-zinc-500">Query param</th>
+                      <th class="p-3 text-[8px] uppercase tracking-widest text-zinc-500">Type</th>
+                      <th class="p-3 text-[8px] uppercase tracking-widest text-zinc-500">Required</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-white/5">
+                      <td class="p-3 text-white">status</td>
+                      <td class="p-3 text-zinc-500">ONLINE | OFFLINE</td>
+                      <td class="p-3 text-zinc-500">NO</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Terminal Panel -->
+              <div class="bg-zinc-900/40 border border-white/5 p-5 relative">
+                <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20"></span>
+                <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20"></span>
+                <span class="text-[8px] font-mono text-zinc-500 tracking-widest block mb-3 uppercase">// RESPONSE_BODY</span>
+                <pre class="font-mono text-[10px] text-indigo-400 overflow-x-auto"><code>[
+  &#123;
+    "node_id": "wh_08f9",
+    "name": "WH-ALPHA",
+    "status": "ONLINE",
+    "latency_ms": 12,
+    "last_sync": "2026-05-20T05:23:44Z"
+  &#125;
+]</code></pre>
+              </div>
+            </div>
+          </section>
+
+          <!-- Endpoint 4: Telemetry Websocket Stream -->
+          <section id="endpoint-telemetry" class="space-y-6 border-t border-white/5 pt-16 scroll-mt-24">
+            <div class="flex flex-wrap items-center gap-3 border-b border-white/10 pb-4">
+              <span class="px-2 py-0.5 border border-white/20 text-[10px] font-mono text-zinc-400 bg-zinc-900/40">GET</span>
+              <h2 class="text-xl font-bold font-mono tracking-wider text-white">/v1/telemetry</h2>
+            </div>
+            
+            <p class="text-sm text-zinc-400 font-sans leading-relaxed">
+              Establish a direct WebSocket secure tunnel to stream transaction throughput, capacity bars, and alert flags in real time.
+            </p>
+
+            <div class="bg-zinc-900/40 border border-white/5 p-5 relative">
+              <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20"></span>
+              <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20"></span>
+              <span class="text-[8px] font-mono text-zinc-500 tracking-widest block mb-3 uppercase">// WEBSOCKET_STREAM // ws://api.bodega.dev/v1/telemetry</span>
+              <pre class="font-mono text-[10px] text-indigo-400 overflow-x-auto"><code># Connect and listen to real-time node outputs
+ws.onmessage = (event) =&gt; &#123;
+  const telemetry = JSON.parse(event.data);
+  console.log(`[SYS_FEED] Active movement in: $&#123;telemetry.node_id&#125; // VEC: $&#123;telemetry.vector&#125;`);
+&#125;;</code></pre>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+<script>
+  const sections = document.querySelectorAll<HTMLElement>('section[id]');
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+
+  function setActive(id: string) {
+    navLinks.forEach((link) => {
+      const isActive = link.dataset.navLink === id;
+      // Left border accent
+      link.classList.toggle('border-indigo-500', isActive);
+      link.classList.toggle('border-transparent', !isActive);
+      // Text + method label inside the link
+      const methodLabel = link.querySelector<HTMLElement>('div:first-child');
+      const pathLabel = link.querySelector<HTMLElement>('div:last-child');
+      if (methodLabel) {
+        methodLabel.classList.toggle('text-indigo-400', isActive);
+        methodLabel.classList.toggle('text-zinc-500', !isActive);
+      }
+      if (pathLabel) {
+        pathLabel.classList.toggle('text-indigo-400', isActive);
+        pathLabel.classList.toggle('text-zinc-400', !isActive);
+      }
+    });
+  }
+
+  // Set the first section active on load
+  if (sections.length > 0) setActive(sections[0].id);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id);
+        }
+      });
+    },
+    {
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0,
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+</script>
+</Layout>

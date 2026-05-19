@@ -1,0 +1,94 @@
+---
+import SectionEyebrow from '../../components/ui/astro/SectionEyebrow.astro';
+
+const rows = [
+  {
+    spec: "History Log Retention",
+    dev: "30 Days",
+    team: "365 Days",
+    global: "Unlimited",
+  },
+  {
+    spec: "Uplink Sync Speed",
+    dev: "150ms max",
+    team: "<15ms guaranteed",
+    global: "<5ms priority",
+  },
+  {
+    spec: "Offline Independent Mode",
+    dev: "Unsupported",
+    team: "Supported",
+    global: "Priority",
+  },
+  {
+    spec: "Data Security Standard",
+    dev: "Basic",
+    team: "Multi-Signature",
+    global: "Full Ledger Chain",
+  },
+  {
+    spec: "Operator Permissions Matrix",
+    dev: "Unsupported",
+    team: "Supported",
+    global: "Custom Keys",
+  },
+  {
+    spec: "Support Uplink Channel",
+    dev: "Community Forums",
+    team: "Direct Secure Line",
+    global: "24/7 Emergency Line",
+  },
+];
+---
+
+<section class="px-6 py-32 max-w-[1600px] w-full mx-auto relative z-10 bg-zinc-950">
+  <div class="border-l-2 border-indigo-500 pl-6 mb-16">
+    <SectionEyebrow class="mb-3">
+      System Capability Spec Matrix
+    </SectionEyebrow>
+    <h2 class="text-2xl md:text-3xl font-light text-white tracking-wide uppercase">
+      Features & Specifications
+    </h2>
+  </div>
+
+  <div class="border border-white/10 bg-zinc-950 overflow-x-auto">
+    <table class="w-full border-collapse font-mono text-xs text-left min-w-[700px]">
+      <thead>
+        <tr class="border-b border-white/10 bg-zinc-900/30">
+          <th class="p-5 text-[9px] uppercase tracking-widest text-zinc-500 w-1/3">System Capability spec</th>
+          <th class="p-5 text-[9px] uppercase tracking-widest text-zinc-500 w-1/6 text-center">Single Store</th>
+          <th class="p-5 text-[9px] uppercase tracking-widest text-indigo-400 w-1/6 text-center">Multi-Location</th>
+          <th class="p-5 text-[9px] uppercase tracking-widest text-zinc-500 w-1/6 text-center">Global Logistics</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr class="border-b border-white/5 last:border-0 hover:bg-zinc-900/30 transition-colors">
+            <!-- Capability -->
+            <td class="p-5 font-medium text-white">
+              <div class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 bg-indigo-500/50"></span>
+                <span>{row.spec}</span>
+              </div>
+            </td>
+            
+            <!-- Dev Node -->
+            <td class="p-5 text-center text-zinc-500">
+              {row.dev}
+            </td>
+            
+            <!-- Team Cluster -->
+            <td class="p-5 text-center text-indigo-400 font-bold bg-indigo-500/[0.01]">
+              {row.team}
+            </td>
+            
+            <!-- Control Node -->
+            <td class="p-5 text-center text-zinc-400">
+              {row.global}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>

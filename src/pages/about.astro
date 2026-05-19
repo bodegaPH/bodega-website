@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/site/Navigation.astro';
+import Footer from '../components/site/Footer.astro';
+import SectionEyebrow from '../components/ui/astro/SectionEyebrow.astro';
+---
+
+<Layout title="Bodega - About Us">
+  <div class="min-h-screen bg-zinc-950 flex flex-col relative overflow-hidden">
+    <Navigation />
+    
+    <main class="relative z-10 flex-1 max-w-[1600px] w-full mx-auto px-6 sm:px-10 lg:px-16 py-16 lg:py-24 space-y-24 border-b border-white/5">
+      
+      <!-- About Hero -->
+      <section class="max-w-3xl space-y-6">
+        <div class="border-l-2 border-indigo-500 pl-6">
+          <SectionEyebrow class="mb-2">Operational Vision</SectionEyebrow>
+          <h1 class="text-3xl sm:text-5xl font-light text-white uppercase tracking-tight leading-[1.1]">
+            THE BODEGA MANIFESTO.
+          </h1>
+        </div>
+        <p class="text-base sm:text-lg text-zinc-400 font-sans leading-relaxed">
+          We believe inventory tracking should be completely bulletproof. Bodega was built to eliminate the human errors, lost stock, and slow software systems that hold warehouses back. We keep your digital tracking sheet in perfect sync with physical stock, creating a single source of truth you can actually trust.
+        </p>
+      </section>
+
+      <!-- The Pillars Grid -->
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Pillar 1: Tamper-Proof History -->
+        <div class="border border-white/10 bg-zinc-900/10 p-8 relative">
+          <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20"></span>
+          <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20"></span>
+          <span class="text-xs font-mono text-indigo-500 mb-6 block tracking-widest">// PILLAR_01</span>
+          <h3 class="text-lg font-bold font-mono tracking-wider text-white uppercase mb-4">Tamper-Proof History</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed font-sans">
+            Every stock receipt, adjustment, and shipment creates a permanent log entry. No count can ever be secretly edited or deleted, ensuring your records are 100% accurate and auditable.
+          </p>
+        </div>
+
+        <!-- Pillar 2: High-Speed Operations -->
+        <div class="border border-white/10 bg-zinc-900/10 p-8 relative">
+          <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20"></span>
+          <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20"></span>
+          <span class="text-xs font-mono text-indigo-500 mb-6 block tracking-widest">// PILLAR_02</span>
+          <h3 class="text-lg font-bold font-mono tracking-wider text-white uppercase mb-4">High-Speed Operations</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed font-sans">
+            Zero loading screens. Zero dashboard bloat. We present high-density stock views, metrics, and actions on a single screen—engineered to save operators time and prevent scanning friction.
+          </p>
+        </div>
+
+        <!-- Pillar 3: Physical-Digital Parity -->
+        <div class="border border-white/10 bg-zinc-900/10 p-8 relative">
+          <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20"></span>
+          <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20"></span>
+          <span class="text-xs font-mono text-indigo-500 mb-6 block tracking-widest">// PILLAR_03</span>
+          <h3 class="text-lg font-bold font-mono tracking-wider text-white uppercase mb-4">Physical-Digital Parity</h3>
+          <p class="text-sm text-zinc-400 leading-relaxed font-sans">
+            Your digital counts are a perfect mirror of your physical inventory. By confirming stock scans directly on the warehouse floor, your digital numbers will never drift from actual physical stock.
+          </p>
+        </div>
+
+      </section>
+
+      <!-- Architecture Schematic -->
+      <section class="space-y-8">
+        <div class="border-l-2 border-indigo-500 pl-6">
+          <SectionEyebrow class="mb-3">System Schematic Overview</SectionEyebrow>
+          <h2 class="text-2xl md:text-3xl font-light text-white tracking-wide uppercase">
+            Data Architecture Flow
+          </h2>
+        </div>
+
+        <div class="border border-white/10 bg-zinc-950 p-6 sm:p-10 relative overflow-hidden flex justify-center items-center">
+          <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20"></span>
+          <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20"></span>
+          
+          <svg class="w-full max-w-[800px] h-[300px]" viewBox="0 0 800 300" fill="none">
+            <!-- Grid Background -->
+            <pattern id="arch-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <rect x="0" y="0" width="1" height="1" fill="#1c1c1f"></rect>
+            </pattern>
+            <rect x="0" y="0" width="800" height="300" fill="url(#arch-grid)"></rect>
+
+            <!-- Node Box 1: Edge Clients -->
+            <rect x="50" y="100" width="160" height="100" stroke="#3f3f46" stroke-width="1" fill="#09090b"></rect>
+            <text x="65" y="130" fill="#a1a1aa" font-size="10" font-family="monospace" letter-spacing="1">EDGE_DEVICES</text>
+            <text x="65" y="150" fill="#52525b" font-size="8" font-family="monospace">>> Barcode Scanners</text>
+            <text x="65" y="165" fill="#52525b" font-size="8" font-family="monospace">>> Digital Scales</text>
+            <text x="65" y="180" fill="#52525b" font-size="8" font-family="monospace">>> Local Terminals</text>
+
+            <!-- Arrow Connector 1 -->
+            <path d="M 210 150 L 320 150" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="4 4"></path>
+            <!-- Flow Pulse -->
+            <circle cx="210" cy="150" r="3" fill="#6366f1">
+              <animate attributeName="cx" from="210" to="320" dur="2.5s" repeatCount="indefinite"></animate>
+            </circle>
+
+            <!-- Node Box 2: Central Ledger -->
+            <rect x="320" y="80" width="180" height="140" stroke="#6366f1" stroke-width="2" fill="#09090b" shadow="[0_0_15px_-5px_rgba(99,102,241,0.3)]"></rect>
+            <text x="335" y="115" fill="#6366f1" font-size="11" font-family="monospace" font-weight="bold" letter-spacing="1">BODEGA_LEDGER</text>
+            <text x="335" y="140" fill="#a1a1aa" font-size="8" font-family="monospace">>> Permanent Logs</text>
+            <text x="335" y="155" fill="#a1a1aa" font-size="8" font-family="monospace">>> Manager Sign-Offs</text>
+            <text x="335" y="170" fill="#a1a1aa" font-size="8" font-family="monospace">>> Instant Device Sync</text>
+            <text x="335" y="195" fill="#6366f1" font-size="8" font-family="monospace">// STATUS: OPERATIONAL</text>
+
+            <!-- Arrow Connector 2 -->
+            <path d="M 500 150 L 610 150" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="4 4"></path>
+            <circle cx="500" cy="150" r="3" fill="#6366f1">
+              <animate attributeName="cx" from="500" to="610" dur="2.5s" repeatCount="indefinite"></animate>
+            </circle>
+
+            <!-- Node Box 3: Console Deck -->
+            <rect x="610" y="100" width="140" height="100" stroke="#3f3f46" stroke-width="1" fill="#09090b"></rect>
+            <text x="625" y="130" fill="#a1a1aa" font-size="10" font-family="monospace" letter-spacing="1">COMMAND_DECK</text>
+            <text x="625" y="150" fill="#52525b" font-size="8" font-family="monospace">>> Live Stock Levels</text>
+            <text x="625" y="165" fill="#52525b" font-size="8" font-family="monospace">>> Staff Permissions</text>
+            <text x="625" y="180" fill="#52525b" font-size="8" font-family="monospace">>> Warehouse Sync</text>
+          </svg>
+        </div>
+      </section>
+
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

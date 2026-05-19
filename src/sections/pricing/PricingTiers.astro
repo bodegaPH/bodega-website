@@ -1,0 +1,168 @@
+---
+import SectionEyebrow from '../../components/ui/astro/SectionEyebrow.astro';
+import OpBadge from '../../components/ui/astro/OpBadge.astro';
+---
+
+<section class="px-6 py-32 max-w-[1600px] w-full mx-auto relative z-10 bg-zinc-950 border-b border-white/5">
+  <!-- Header -->
+  <div class="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
+    <div class="border-l border-indigo-500 pl-6 border-solid">
+      <SectionEyebrow class="mb-4">
+        Flexible Plans
+      </SectionEyebrow>
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-light text-white leading-[1.1] uppercase">
+        Free to Test. Simple to Scale.
+      </h2>
+    </div>
+    <p class="text-sm text-zinc-400 font-sans max-w-md bg-zinc-900/50 p-5 border border-zinc-800 relative">
+      <span class="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-zinc-500"></span>
+      Bodega is currently in active release testing. Select a tier below to get started for free, or join our waitlist as we open up more locations.
+    </p>
+  </div>
+
+  <!-- Pricing Cards Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+    <!-- Tier 1: Single Store -->
+    <div class="relative border border-white/10 bg-zinc-900/10 p-8 flex flex-col justify-between group hover:border-indigo-500/50 transition-colors">
+      <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20"></span>
+      <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20"></span>
+      
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <span class="text-xs font-mono text-zinc-500 tracking-widest">// SEC_01</span>
+          <OpBadge class="bg-black">OP:SINGLE_STORE</OpBadge>
+        </div>
+        
+        <h3 class="text-xl font-bold font-mono tracking-wider text-white uppercase mb-2">Single Store</h3>
+        <p class="text-xs text-zinc-500 font-mono mb-8">Perfect for small retailers, local shops, or single warehouse operations starting out</p>
+        
+        <div class="flex items-baseline gap-2 mb-8">
+          <span class="text-3xl font-light font-mono text-white">$0.00</span>
+          <span class="text-xs text-zinc-500 font-mono">/ FOREVER</span>
+        </div>
+
+        <ul class="space-y-4 border-t border-white/5 pt-8 mb-12 text-sm text-zinc-400 font-mono">
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-indigo-500"></span>
+            5,000 movements / mo
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-indigo-500"></span>
+            1 active warehouse location
+          </li>
+          <li class="flex items-center gap-3 text-zinc-600">
+            <span class="w-1.5 h-1.5 bg-zinc-800"></span>
+            Basic Operator Permissions
+          </li>
+          <li class="flex items-center gap-3 text-zinc-600">
+            <span class="w-1.5 h-1.5 bg-zinc-800"></span>
+            Standard sync speed
+          </li>
+        </ul>
+      </div>
+
+      <a
+        href="https://bodega-app-one.vercel.app/auth/signup"
+        class="w-full text-center px-6 py-4 bg-zinc-950 hover:bg-white text-zinc-400 hover:text-zinc-950 font-bold uppercase transition-all border border-white/10 hover:border-white font-mono text-xs tracking-widest flex items-center justify-center gap-3"
+      >
+        <span class="text-zinc-700 font-bold group-hover:text-zinc-950">&gt;</span> [ Start Free Trial ]
+      </a>
+    </div>
+
+    <!-- Tier 2: Multi-Location (Recommended) -->
+    <div class="relative border-2 border-indigo-500/50 bg-indigo-500/[0.02] p-8 flex flex-col justify-between group hover:border-indigo-500 transition-colors shadow-[0_0_20px_-10px_rgba(99,102,241,0.3)]">
+      <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-indigo-500"></span>
+      <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-indigo-500"></span>
+      
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <span class="text-xs font-mono text-indigo-500 tracking-widest">// SEC_02 // RECOMMENDED</span>
+          <OpBadge class="bg-indigo-500/10 text-indigo-400">OP:MULTI_LOCATION</OpBadge>
+        </div>
+        
+        <h3 class="text-xl font-bold font-mono tracking-wider text-white uppercase mb-2">Multi-Location</h3>
+        <p class="text-xs text-zinc-400 font-mono mb-8">Ideal for growing businesses managing multiple stockrooms, retail branches, or active facilities</p>
+        
+        <div class="flex items-baseline gap-2 mb-8">
+          <span class="text-3xl font-light font-mono text-white">$0.00</span>
+          <span class="text-xs text-indigo-400 font-mono">/ DURING BETA</span>
+        </div>
+
+        <ul class="space-y-4 border-t border-indigo-500/10 pt-8 mb-12 text-sm text-zinc-300 font-mono">
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-indigo-500"></span>
+            100,000 movements / mo
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-indigo-500"></span>
+            5 active warehouse nodes
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-indigo-500"></span>
+            Shared team access
+          </li>
+          <li class="flex items-center gap-3 text-zinc-500">
+            <span class="w-1.5 h-1.5 bg-indigo-500/40"></span>
+            Under 15ms sync speed
+          </li>
+        </ul>
+      </div>
+
+      <a
+        href="https://bodega-app-one.vercel.app/auth/signup"
+        class="w-full text-center px-6 py-4 bg-indigo-500 text-zinc-950 font-bold uppercase transition-all shadow-[0_0_30px_-5px_rgba(99,102,241,0.5)] font-mono text-xs tracking-widest flex items-center justify-center gap-3 hover:bg-white"
+      >
+        <span class="animate-pulse w-2 h-4 bg-zinc-950 inline-block"></span> [ Start Free Trial ]
+      </a>
+    </div>
+
+    <!-- Tier 3: Global Logistics -->
+    <div class="relative border border-white/10 bg-zinc-900/10 p-8 flex flex-col justify-between group hover:border-indigo-500/50 transition-colors">
+      <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20"></span>
+      <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20"></span>
+      
+      <div>
+        <div class="flex items-center justify-between mb-8">
+          <span class="text-xs font-mono text-zinc-500 tracking-widest">// SEC_03</span>
+          <OpBadge class="bg-black">OP:GLOBAL_LOGISTICS</OpBadge>
+        </div>
+        
+        <h3 class="text-xl font-bold font-mono tracking-wider text-white uppercase mb-2">Global Logistics</h3>
+        <p class="text-xs text-zinc-500 font-mono mb-8">Designed for high-volume distributors, regional manufacturing hubs, and large-scale supply chains</p>
+        
+        <div class="flex items-baseline gap-2 mb-8">
+          <span class="text-3xl font-light font-mono text-white">$0.00</span>
+          <span class="text-xs text-zinc-500 font-mono">/ DURING BETA</span>
+        </div>
+
+        <ul class="space-y-4 border-t border-white/5 pt-8 mb-12 text-sm text-zinc-400 font-mono">
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-indigo-500"></span>
+            Unlimited inventory movements
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-indigo-500"></span>
+            Unlimited active nodes
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-indigo-500"></span>
+            Custom systems integration
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-1.5 h-1.5 bg-indigo-500"></span>
+            24/7 dedicated priority support
+          </li>
+        </ul>
+      </div>
+
+      <a
+        href="https://bodega-app-one.vercel.app/auth/signup"
+        class="w-full text-center px-6 py-4 bg-zinc-950 hover:bg-white text-zinc-400 hover:text-zinc-950 font-bold uppercase transition-all border border-white/10 hover:border-white font-mono text-xs tracking-widest flex items-center justify-center gap-3"
+      >
+        <span class="text-zinc-700 font-bold group-hover:text-zinc-950">&gt;</span> [ Join Beta Waitlist ]
+      </a>
+    </div>
+
+  </div>
+</section>

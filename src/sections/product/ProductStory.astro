@@ -1,0 +1,311 @@
+---
+import SectionEyebrow from '../../components/ui/astro/SectionEyebrow.astro';
+import OpBadge from '../../components/ui/astro/OpBadge.astro';
+---
+
+<!-- ═══════════════════════════════════════════
+     Feature 01 — RECEIVE
+     Layout: Text left, Diagram right
+═══════════════════════════════════════════ -->
+<section class="w-full bg-zinc-950 border-b border-white/5">
+  <div class="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 py-24 lg:py-36
+              grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+    <!-- Copy -->
+    <div>
+      <span class="block text-[96px] lg:text-[140px] font-mono font-light text-zinc-900 leading-none mb-4 select-none" aria-hidden="true">01</span>
+      <div class="mb-6">
+        <OpBadge class="bg-indigo-500/10 text-indigo-400">OP:RECEIVE</OpBadge>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-white uppercase leading-[1.05] mb-6">
+        Stock comes in.<br/>We log it instantly.
+      </h2>
+      <p class="text-zinc-400 font-sans text-base leading-relaxed max-w-md mb-10">
+        The moment a barcode is scanned at the loading dock, Bodega records the quantity, the location, and the operator. Your stock count updates in real time — no manual entry, no risk of a double-entry mistake.
+      </p>
+
+      <div class="grid grid-cols-2 gap-px bg-white/5">
+        <div class="bg-zinc-950 p-6">
+          <div class="text-3xl font-mono font-light text-white mb-2">&lt;50ms</div>
+          <div class="text-[9px] font-mono text-zinc-500 tracking-widest uppercase">Log Write Speed</div>
+        </div>
+        <div class="bg-zinc-950 p-6">
+          <div class="text-3xl font-mono font-light text-indigo-400 mb-2">0</div>
+          <div class="text-[9px] font-mono text-zinc-500 tracking-widest uppercase">Silent Errors Allowed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagram: Items dropping into warehouse bin -->
+    <div class="relative border border-white/5 bg-zinc-900/20 flex items-center justify-center h-[380px]">
+      <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-white/20" aria-hidden="true"></div>
+      <div class="absolute top-0 right-0 w-3 h-3 border-t border-r border-white/20" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-white/20" aria-hidden="true"></div>
+      <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-white/20" aria-hidden="true"></div>
+
+      <svg viewBox="0 0 420 300" class="w-full h-full p-8" fill="none" aria-label="Stock receiving diagram" role="img">
+        <defs>
+          <pattern id="recv-dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <rect x="0" y="0" width="1" height="1" fill="#27272a"/>
+          </pattern>
+        </defs>
+        <rect width="420" height="300" fill="url(#recv-dots)"/>
+
+        <!-- Scanner at top -->
+        <rect x="160" y="10" width="100" height="44" stroke="#3f3f46" stroke-width="1" fill="#09090b"/>
+        <text x="210" y="31" fill="#52525b" font-size="8" font-family="monospace" text-anchor="middle">BARCODE_SCAN</text>
+        <text x="210" y="46" fill="#6366f1" font-size="8" font-family="monospace" text-anchor="middle">● ACTIVE</text>
+
+        <!-- Fall path (dashed guide) -->
+        <path d="M 210 54 L 210 195" stroke="#6366f1" stroke-width="1" stroke-dasharray="4 5" opacity="0.3"/>
+
+        <!-- Warehouse bin (bottom) -->
+        <rect x="70" y="195" width="280" height="90" stroke="#3f3f46" stroke-width="1" fill="#09090b"/>
+        <line x1="70" y1="225" x2="350" y2="225" stroke="#27272a" stroke-width="1"/>
+        <text x="210" y="215" fill="#52525b" font-size="8" font-family="monospace" text-anchor="middle">WAREHOUSE_BIN // ZONE-A4</text>
+
+        <!-- Existing items in bin -->
+        <rect x="90"  y="232" width="38" height="46" stroke="#3f3f46" stroke-width="1" fill="#18181b"/>
+        <rect x="136" y="232" width="38" height="46" stroke="#3f3f46" stroke-width="1" fill="#18181b"/>
+        <rect x="182" y="232" width="38" height="46" stroke="#3f3f46" stroke-width="1" fill="#18181b"/>
+
+        <!-- Animated incoming item -->
+        <rect x="228" y="232" width="38" height="46" stroke="#6366f1" stroke-width="1.5" fill="#18181b">
+          <animate attributeName="y" from="56" to="232" dur="2.2s" repeatCount="indefinite"
+                   calcMode="spline" keySplines="0.4 0 0.2 1" keyTimes="0;1"/>
+          <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.05;0.15;1" dur="2.2s" repeatCount="indefinite"/>
+        </rect>
+        <!-- Indigo glow border on item once landed -->
+        <rect x="228" y="232" width="38" height="46" stroke="#6366f1" stroke-width="1" fill="none" opacity="0.4">
+          <animate attributeName="opacity" values="0;0;0;0.6;0" keyTimes="0;0.8;0.88;0.92;1" dur="2.2s" repeatCount="indefinite"/>
+        </rect>
+
+        <!-- Live counter panel (left) -->
+        <rect x="10" y="195" width="54" height="55" stroke="#6366f1" stroke-width="1" fill="#09090b"/>
+        <text x="37" y="214" fill="#52525b" font-size="7" font-family="monospace" text-anchor="middle">QTY</text>
+        <text x="37" y="236" fill="#ffffff" font-size="18" font-family="monospace" text-anchor="middle" font-weight="bold">
+          48
+          <animate attributeName="textContent" values="48;48;48;49;49;49" keyTimes="0;0.7;0.8;0.82;0.9;1" dur="2.2s" repeatCount="indefinite"/>
+        </text>
+        <text x="37" y="248" fill="#6366f1" font-size="6" font-family="monospace" text-anchor="middle">UNITS</text>
+
+        <!-- Log confirmation block (right) -->
+        <rect x="304" y="180" width="106" height="60" stroke="#3f3f46" stroke-width="1" fill="#09090b">
+          <animate attributeName="stroke" values="#3f3f46;#6366f1;#3f3f46" keyTimes="0;0.88;1" dur="2.2s" repeatCount="indefinite"/>
+        </rect>
+        <text x="316" y="199" fill="#52525b" font-size="7" font-family="monospace">BLOCK:094</text>
+        <text x="316" y="212" fill="#52525b" font-size="7" font-family="monospace">HASH:b44f</text>
+        <text x="316" y="225" fill="#52525b" font-size="7" font-family="monospace">OP:RECEIVE</text>
+        <text x="316" y="236" fill="#6366f1" font-size="7" font-family="monospace">STATUS:OK</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     Feature 02 — SYNC
+     Layout: Diagram left, Text right
+     Background: black (alternating stripe)
+═══════════════════════════════════════════ -->
+<section class="w-full bg-black border-b border-white/5">
+  <div class="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 py-24 lg:py-36
+              grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+    <!-- Diagram: Multi-device sync hub (order-2 on mobile, order-1 on lg) -->
+    <div class="relative border border-white/5 bg-zinc-900/10 flex items-center justify-center h-[380px] order-2 lg:order-1">
+      <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-white/20" aria-hidden="true"></div>
+      <div class="absolute top-0 right-0 w-3 h-3 border-t border-r border-white/20" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-white/20" aria-hidden="true"></div>
+      <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-white/20" aria-hidden="true"></div>
+
+      <svg viewBox="0 0 420 300" class="w-full h-full p-8" fill="none" aria-label="Multi-device sync diagram" role="img">
+        <defs>
+          <pattern id="sync-dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <rect x="0" y="0" width="1" height="1" fill="#18181b"/>
+          </pattern>
+        </defs>
+        <rect width="420" height="300" fill="url(#sync-dots)"/>
+
+        <!-- Central ledger hub -->
+        <rect x="165" y="110" width="90" height="80" stroke="#6366f1" stroke-width="2" fill="#09090b"/>
+        <text x="210" y="146" fill="#6366f1" font-size="8" font-family="monospace" text-anchor="middle">BODEGA</text>
+        <text x="210" y="160" fill="#6366f1" font-size="8" font-family="monospace" text-anchor="middle">LEDGER</text>
+        <text x="210" y="174" fill="#3730a3" font-size="7" font-family="monospace" text-anchor="middle">LIVE</text>
+
+        <!-- Pulse rings radiating from hub -->
+        <circle cx="210" cy="150" r="45" stroke="#6366f1" stroke-width="1">
+          <animate attributeName="r" from="50" to="100" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" from="0.5" to="0" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="210" cy="150" r="45" stroke="#6366f1" stroke-width="0.5">
+          <animate attributeName="r" from="50" to="100" dur="2.5s" begin="0.83s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" from="0.3" to="0" dur="2.5s" begin="0.83s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="210" cy="150" r="45" stroke="#6366f1" stroke-width="0.5">
+          <animate attributeName="r" from="50" to="100" dur="2.5s" begin="1.66s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" from="0.2" to="0" dur="2.5s" begin="1.66s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Device: Top-left (Scanner) -->
+        <rect x="20" y="15" width="80" height="42" stroke="#3f3f46" stroke-width="1" fill="#09090b"/>
+        <text x="60" y="32" fill="#a1a1aa" font-size="7.5" font-family="monospace" text-anchor="middle">SCANNER</text>
+        <text x="60" y="47" fill="#52525b" font-size="7" font-family="monospace" text-anchor="middle">WH-ALPHA</text>
+        <!-- Connection line -->
+        <line x1="100" y1="36" x2="165" y2="120" stroke="#3f3f46" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <!-- Animated data pulse -->
+        <circle r="3" fill="#6366f1">
+          <animateMotion path="M100,36 L165,120" dur="1.4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="1.4s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Device: Top-right (Terminal) -->
+        <rect x="320" y="15" width="80" height="42" stroke="#3f3f46" stroke-width="1" fill="#09090b"/>
+        <text x="360" y="32" fill="#a1a1aa" font-size="7.5" font-family="monospace" text-anchor="middle">TERMINAL</text>
+        <text x="360" y="47" fill="#52525b" font-size="7" font-family="monospace" text-anchor="middle">WH-BETA</text>
+        <line x1="320" y1="36" x2="255" y2="120" stroke="#3f3f46" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <circle r="3" fill="#6366f1">
+          <animateMotion path="M320,36 L255,120" dur="1.4s" begin="0.35s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="1.4s" begin="0.35s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Device: Bottom-left (Scale) -->
+        <rect x="20" y="243" width="80" height="42" stroke="#3f3f46" stroke-width="1" fill="#09090b"/>
+        <text x="60" y="260" fill="#a1a1aa" font-size="7.5" font-family="monospace" text-anchor="middle">SCALE</text>
+        <text x="60" y="275" fill="#52525b" font-size="7" font-family="monospace" text-anchor="middle">WH-GAMMA</text>
+        <line x1="100" y1="264" x2="165" y2="190" stroke="#3f3f46" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <circle r="3" fill="#6366f1">
+          <animateMotion path="M100,264 L165,190" dur="1.4s" begin="0.7s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="1.4s" begin="0.7s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Device: Bottom-right (Handheld) -->
+        <rect x="320" y="243" width="80" height="42" stroke="#3f3f46" stroke-width="1" fill="#09090b"/>
+        <text x="360" y="260" fill="#a1a1aa" font-size="7.5" font-family="monospace" text-anchor="middle">HANDHELD</text>
+        <text x="360" y="275" fill="#52525b" font-size="7" font-family="monospace" text-anchor="middle">WH-DELTA</text>
+        <line x1="320" y1="264" x2="255" y2="190" stroke="#3f3f46" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <circle r="3" fill="#6366f1">
+          <animateMotion path="M320,264 L255,190" dur="1.4s" begin="1.05s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.9;1" dur="1.4s" begin="1.05s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+
+    <!-- Copy (order-1 on mobile, order-2 on lg) -->
+    <div class="order-1 lg:order-2">
+      <span class="block text-[96px] lg:text-[140px] font-mono font-light text-zinc-900 leading-none mb-4 select-none" aria-hidden="true">02</span>
+      <div class="mb-6">
+        <OpBadge class="bg-indigo-500/10 text-indigo-400">OP:SYNC</OpBadge>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-white uppercase leading-[1.05] mb-6">
+        Every device.<br/>Same number.<br/>Right now.
+      </h2>
+      <p class="text-zinc-400 font-sans text-base leading-relaxed max-w-md mb-10">
+        Scanners, handhelds, scales, and floor terminals all talk to the same ledger. When one device records a movement, every other device reflects it in under 12 milliseconds. No one is ever looking at stale data.
+      </p>
+
+      <div class="grid grid-cols-2 gap-px bg-white/5">
+        <div class="bg-black p-6">
+          <div class="text-3xl font-mono font-light text-white mb-2">&lt;12ms</div>
+          <div class="text-[9px] font-mono text-zinc-500 tracking-widest uppercase">Sync Latency</div>
+        </div>
+        <div class="bg-black p-6">
+          <div class="text-3xl font-mono font-light text-indigo-400 mb-2">∞</div>
+          <div class="text-[9px] font-mono text-zinc-500 tracking-widest uppercase">Devices Supported</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     Feature 03 — VERIFY
+     Layout: Text left, Diagram right
+     Background: zinc-950
+═══════════════════════════════════════════ -->
+<section class="w-full bg-zinc-950 border-b border-white/5">
+  <div class="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 py-24 lg:py-36
+              grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+    <!-- Copy -->
+    <div>
+      <span class="block text-[96px] lg:text-[140px] font-mono font-light text-zinc-900 leading-none mb-4 select-none" aria-hidden="true">03</span>
+      <div class="mb-6">
+        <OpBadge class="bg-indigo-500/10 text-indigo-400">OP:VERIFY</OpBadge>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-light text-white uppercase leading-[1.05] mb-6">
+        Nothing changes<br/>without a trace.
+      </h2>
+      <p class="text-zinc-400 font-sans text-base leading-relaxed max-w-md mb-10">
+        Every record is locked the moment it's written. Count adjustments require a manager signature. If something changes, you will see it — who did it, when, and exactly by how much. There is no silent overwrite, no "undo," and no missing data.
+      </p>
+
+      <div class="grid grid-cols-2 gap-px bg-white/5">
+        <div class="bg-zinc-950 p-6">
+          <div class="text-3xl font-mono font-light text-white mb-2">100%</div>
+          <div class="text-[9px] font-mono text-zinc-500 tracking-widest uppercase">Audit Coverage</div>
+        </div>
+        <div class="bg-zinc-950 p-6">
+          <div class="text-3xl font-mono font-light text-indigo-400 mb-2">0</div>
+          <div class="text-[9px] font-mono text-zinc-500 tracking-widest uppercase">Silent Edits Possible</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diagram: Locked audit log timeline -->
+    <div class="relative border border-white/5 bg-zinc-900/20 flex items-center justify-center h-[380px]">
+      <div class="absolute top-0 left-0 w-3 h-3 border-t border-l border-white/20" aria-hidden="true"></div>
+      <div class="absolute top-0 right-0 w-3 h-3 border-t border-r border-white/20" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-white/20" aria-hidden="true"></div>
+      <div class="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-white/20" aria-hidden="true"></div>
+
+      <svg viewBox="0 0 420 300" class="w-full h-full p-8" fill="none" aria-label="Audit log timeline diagram" role="img">
+        <defs>
+          <pattern id="verify-dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <rect x="0" y="0" width="1" height="1" fill="#27272a"/>
+          </pattern>
+        </defs>
+        <rect width="420" height="300" fill="url(#verify-dots)"/>
+
+        <!-- Vertical timeline axis -->
+        <line x1="50" y1="20" x2="50" y2="280" stroke="#27272a" stroke-width="1.5"/>
+
+        <!-- Entry 1 — Locked -->
+        <circle cx="50" cy="55" r="5" fill="#6366f1"/>
+        <rect x="70" y="36" width="330" height="38" stroke="#3f3f46" stroke-width="1" fill="#09090b"/>
+        <text x="84" y="53" fill="#52525b" font-size="7.5" font-family="monospace">05:42:11  OP:RECEIVE  SKU-A9821 ×48</text>
+        <text x="84" y="66" fill="#6366f1" font-size="7" font-family="monospace">LOCKED  HASH:a41f9c  SIGN:MGR_01 ✓</text>
+
+        <!-- Chain link -->
+        <text x="38" y="98" fill="#3f3f46" font-size="10" font-family="monospace" text-anchor="middle">▼</text>
+
+        <!-- Entry 2 — Locked -->
+        <circle cx="50" cy="120" r="5" fill="#6366f1"/>
+        <rect x="70" y="101" width="330" height="38" stroke="#3f3f46" stroke-width="1" fill="#09090b"/>
+        <text x="84" y="118" fill="#52525b" font-size="7.5" font-family="monospace">05:44:33  OP:ISSUE  SKU-B3301 ×12</text>
+        <text x="84" y="131" fill="#6366f1" font-size="7" font-family="monospace">LOCKED  HASH:71b9a1  SIGN:OPR_07 ✓</text>
+
+        <!-- Chain link -->
+        <text x="38" y="163" fill="#3f3f46" font-size="10" font-family="monospace" text-anchor="middle">▼</text>
+
+        <!-- Entry 3 — Locked -->
+        <circle cx="50" cy="185" r="5" fill="#6366f1"/>
+        <rect x="70" y="166" width="330" height="38" stroke="#3f3f46" stroke-width="1" fill="#09090b"/>
+        <text x="84" y="183" fill="#52525b" font-size="7.5" font-family="monospace">05:46:52  OP:ADJUST  SKU-A9820 +3</text>
+        <text x="84" y="196" fill="#6366f1" font-size="7" font-family="monospace">LOCKED  HASH:e902c4  SIGN:MGR_01 ✓</text>
+
+        <!-- Chain link -->
+        <text x="38" y="228" fill="#3f3f46" font-size="10" font-family="monospace" text-anchor="middle">▼</text>
+
+        <!-- Entry 4 — Currently writing (animated) -->
+        <circle cx="50" cy="255" r="5" stroke="#6366f1" stroke-width="1.5" fill="#09090b">
+          <animate attributeName="opacity" values="1;0.2;1" dur="1.2s" repeatCount="indefinite"/>
+        </circle>
+        <rect x="70" y="236" width="330" height="38" stroke="#6366f1" stroke-width="1" stroke-dasharray="4 3" fill="#09090b"/>
+        <text x="84" y="253" fill="#3f3f46" font-size="7.5" font-family="monospace">05:47:03  OP:RECEIVE  WRITING...</text>
+        <text x="84" y="266" fill="#3f3f46" font-size="7" font-family="monospace">PENDING  AWAITING SIGNATURE...</text>
+      </svg>
+    </div>
+  </div>
+</section>

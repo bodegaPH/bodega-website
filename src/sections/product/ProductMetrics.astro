@@ -1,0 +1,70 @@
+---
+const stats = [
+  { value: '<12ms', label: 'Sync Latency',       sub: 'across every connected device' },
+  { value: '100%', label: 'Uptime Architecture', sub: 'offline-first, always operational' },
+  { value: '0',    label: 'Silent Edits',        sub: 'every change is signed and logged' },
+  { value: '∞',    label: 'History Retention',   sub: 'no expiry, no purges, no gaps' },
+];
+
+const bars = [
+  { label: 'OP:RECEIVE', pct: 58, count: '142,820 movements' },
+  { label: 'OP:ISSUE',   pct: 35, count: '86,100 movements' },
+  { label: 'OP:ADJUST',  pct: 7,  count: '17,220 movements' },
+];
+---
+
+<section class="w-full bg-black border-b border-white/5">
+  <div class="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 py-24">
+
+    <!-- Section eyebrow header -->
+    <div class="flex items-center gap-4 mb-16">
+      <span class="text-[9px] font-mono text-indigo-500 tracking-widest uppercase border border-indigo-500/30 bg-indigo-500/5 px-3 py-1.5 shrink-0">
+        // SYSTEM_TELEMETRY
+      </span>
+      <div class="flex-1 h-px bg-white/5"></div>
+      <span class="text-[9px] font-mono text-zinc-700 tracking-widest shrink-0">LIVE_METRICS // 30s_REFRESH</span>
+    </div>
+
+    <!-- Big four stat blocks -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 border border-white/5">
+      {stats.map((s, i) => (
+        <div class={`p-8 lg:p-10 ${i < 3 ? 'border-r border-white/5' : ''} ${i < 2 ? 'border-b lg:border-b-0 border-white/5' : ''}`}>
+          <div class="text-5xl xl:text-6xl font-mono font-light text-white mb-3 leading-none tabular-nums">{s.value}</div>
+          <div class="text-[10px] font-mono text-indigo-400 uppercase tracking-widest mb-2">{s.label}</div>
+          <div class="text-xs text-zinc-600 font-sans leading-relaxed">{s.sub}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Movement distribution bars -->
+    <div class="mt-12 border border-white/5 bg-zinc-950/60 p-8 relative">
+      <span class="absolute top-0 left-0 w-2 h-2 border-t border-l border-white/20" aria-hidden="true"></span>
+      <span class="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-white/20" aria-hidden="true"></span>
+
+      <div class="text-[9px] font-mono text-zinc-500 tracking-widest uppercase mb-8">
+        // MOVEMENT_DISTRIBUTION // LAST_30_DAYS
+      </div>
+
+      <div class="space-y-7">
+        {bars.map((row) => (
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="text-[10px] font-mono text-zinc-400 tracking-widest">{row.label}</span>
+              <span class="text-[10px] font-mono text-zinc-600">{row.count}</span>
+            </div>
+            <div class="relative h-1.5 bg-zinc-900 w-full">
+              <div
+                class="h-full bg-indigo-500 absolute top-0 left-0"
+                style={`width: ${row.pct}%`}
+              ></div>
+            </div>
+            <div class="mt-1.5 text-right">
+              <span class="text-[9px] font-mono text-zinc-700">{row.pct}%</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
