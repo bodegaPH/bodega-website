@@ -35,7 +35,7 @@ src/
 
 **Shared Section** (`sections/shared/SectionName.astro`):
 - Used on 2+ pages with same structure
-- Example: `sections/shared/CTASection.astro`
+- Example: `sections/shared/LogoStrip.astro`
 
 **UI Component** (`components/ui/astro/*.astro`):
 - Reusable primitive used across multiple sections
@@ -260,7 +260,7 @@ import Footer from '../components/site/Footer.astro';
 
 import HeroSection from '../sections/pagename/HeroSection.astro';
 import ContentSection from '../sections/pagename/ContentSection.astro';
-import CTASection from '../sections/shared/CTASection.astro';
+import CTASection from '../sections/home/CTASection.astro';
 ---
 
 <Layout title="Page Title">
